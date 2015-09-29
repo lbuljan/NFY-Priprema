@@ -1,0 +1,5 @@
+-ako korisnik nije ulogiran, tipka financiraj projekt na banneru vodi na prijavu
+-na stranici za login ubaciti poveznicu na registraciju
+-nakon logina link na profil i na odjavu mijenja login i signup
+-pokrenuti projekti pokraj tipke za profil
+-dizajnirati i login i registraciju
