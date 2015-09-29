@@ -1,0 +1,8 @@
+plava - #085b5b
+crvena - #e01e25
+boja slova u navbaru - #d6d6d5
+footer text - white
+body text - black
+
+
+Footer: #085b5b + opacity 12%, blur 50,8 mm
