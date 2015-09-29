@@ -18,11 +18,7 @@
 	<button id="prijavi"> Prijavi </button>
 </form>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="<?php echo $put;?>js/bootstrap.min.js"></script>
-<script src="<?php echo $put;?>js/md5.js"></script>
+<?php include "../js/skripte.php";?>
 
 <script>
 	$("#prijavi").click(function(){
