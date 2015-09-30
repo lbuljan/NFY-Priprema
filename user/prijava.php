@@ -9,7 +9,7 @@ $operater = $check -> fetch(PDO::FETCH_OBJ);
 
 $_SESSION['operater'] = $operater->sifra;
 if($operater==NULL):
-	header("location: ../index.php?err=1");
+	header("location: formaPrijava.php?err=1");
 else:
-	header("location: index.php");
+	header("location: ../index.php");
 endif;
