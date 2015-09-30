@@ -1,0 +1,119 @@
+body {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.navbar {
+	background-color: #085b5b;
+}
+
+a .navbar-text {
+	color: #d6d6d5;
+}
+
+.nav > li > a {
+  position: relative;
+  display: block;
+ padding: 0;
+ padding-top: 7px;
+ padding-bottom:7px;
+ color:#d6d6d5;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #085b5b;
+}
+
+.btn-default {
+  color: #d6d6d5;
+  background-color: #085b5b;
+  border-color: #085b5b;
+}
+.btn-default:focus,
+.btn-default.focus {
+  color: #d6d6d5;
+  background-color: #085b5b;
+  border-color: #085b5b;
+}
+.btn-default:hover {
+  color: #d6d6d5;
+  background-color: #085b5b;
+  border-color: #085b5b;
+}
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  color: #d6d6d5;
+  background-color: #085b5b;
+  border-color: #085b5b;
+}
+.btn-default:active:hover,
+.btn-default.active:hover,
+.open > .dropdown-toggle.btn-default:hover,
+.btn-default:active:focus,
+.btn-default.active:focus,
+.open > .dropdown-toggle.btn-default:focus,
+.btn-default:active.focus,
+.btn-default.active.focus,
+.open > .dropdown-toggle.btn-default.focus {
+  color: #d6d6d5;
+  background-color: #085b5b;
+  border-color: #085b5b;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 35px;
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0px;
+}
+
+#pokreni {
+	margin-left: 400px;
+	margin-top: -230px;
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: 15px; }
+
+footer {
+margin-top: 20px;
+padding-bottom: 10px;
+  background-color: #085b5b; 
+  color: #d13423;
+  padding-bottom:50px;
+   -webkit-box-shadow: inset 0 0 30px #085b5b;
+    -moz-box-shadow: inset 0 0 30px #085b5b;
+    box-shadow: inset 0 0 30px #085b5b;
+
+}
+
+.fut {
+	color: white;
+	text-align: center;
+	font-size: 20px;
+	margin-top: 40px;
+
+}
+
+.projekt {
+	text-align: center;
+	font-size: 30px;
+}
