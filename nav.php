@@ -17,20 +17,16 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-              <li class="navbar-text"><a href="">POČETNA</a></li>
+              <li class="navbar-text"><a href="<?php echo $put ?>index.php">POČETNA</a></li>
          <li class="navbar-text"><a href="">PROJEKTI</a></li>
 <li class="navbar-text"><a href="">POKRENUTI PROJEKTI</a></li>
 <li class="navbar-text"><a href="">FINANCIRAJ PROJEKT</a></li>
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
-        <li class="navbar-text"><a href="user/formaRegistranica.php">SING UP</a></li>    
-<li class="navbar-text"><a href="user/formaPrijava.php">LOGIN</a></li> 
+        <li class="navbar-text"><a href="<?php echo $put ?>user/formaRegistracija.php">SIGN UP</a></li>    
+<li class="navbar-text"><a href="<?php echo $put ?>user/formaPrijava.php">LOGIN</a></li> 
       </ul>
     </div>
   </div>
 </nav>
-
-<img src="slike/banner.png" alt="Banner" style="max-width:100%;" />
-
-<button class="btn btn-default" id="pokreni" type="submit">Pokreni projekt!</button>

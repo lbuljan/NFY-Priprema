@@ -1,5 +1,6 @@
 body {
   font-family: 'Work Sans', sans-serif;
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -99,9 +100,9 @@ padding-bottom: 10px;
   background-color: #085b5b; 
   color: #d13423;
   padding-bottom:50px;
-   -webkit-box-shadow: inset 0 0 30px #085b5b;
-    -moz-box-shadow: inset 0 0 30px #085b5b;
-    box-shadow: inset 0 0 30px #085b5b;
+   -webkit-box-shadow: inset 0 0 80px 80px rgba(8,9,9,0.2);
+    -moz-box-shadow: inset 0 0 80px 80px rgba(8,9,9,0.2);
+    box-shadow: inset 0 0 80px 80px rgba(8,9,9,0.2);
 
 }
 
@@ -116,4 +117,48 @@ padding-bottom: 10px;
 .projekt {
 	text-align: center;
 	font-size: 30px;
+}
+
+.uspj {
+  max-width: 350px;
+  margin-left: 40px;
+  background-color: #ebe6e2;
+}
+
+.uspj p {
+  margin: 20px;
+  font-size: 17px;
+  padding-bottom: 20px;
+  line-height: 30px
+}
+
+.uspj a {
+  color: #e01e25;
+  text-decoration: none;
+}
+
+.uspj1 {
+  max-width: 350px;
+}
+
+.prijava {
+  background-color: #e8e8e7;
+  text-align: center;
+  margin-left: 400px;
+  margin-right:400px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+}
+
+.login {
+  margin-top:130px;
+  font-size:50px;
+  text-align: center;
+}
+
+.log {
+  border: none;
+  margin: 10px;
+  width: 300px;
 }

@@ -22,13 +22,13 @@
 				<div class="fut">SOCIAL MEDIA</div>
 				<hr style="color:#d6d6d5;width:70%;" />
 				<div style="text-align:center;">
-				<img src="slike/social_facebook_box_blue.png" style="width:10%;margin-right:10px;" />
-				<img src="slike/Twitter.png" style="width:10%;margin-left:10px;" /></div>
+				<img src="<?php echo $put ?>slike/social_facebook_box_blue.png" style="width:10%;margin-right:10px;" />
+				<img src="<?php echo $put ?>slike/Twitter.png" style="width:10%;margin-left:10px;" /></div>
 				<br />
 				<div class="fut" style="margin-top:10px">FINANCIRAJ</div>
 				<hr style="color:#d6d6d5;width:70%;" />
 					<div style="text-align:center;">
-				<img src="slike/credit-card.png" style="width:40%;margin-right:10px;" />
+				<img src="<?php echo $put ?>slike/credit-card.png" style="width:40%;margin-right:10px;" />
 			</div>
 			</div>
 
