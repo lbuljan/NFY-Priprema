@@ -12,7 +12,7 @@
 
 <h1 class="login">LOGIN</h1>
 <div class="prijava">
-<form action="<?php echo $put;?>prijava.php" method="POST">
+<form action="<?php echo $put;?>user/prijava.php" method="POST">
 	<input class="log" type="text" id="email" name="email" placeholder="korisničko ime ili email" /><br />
 	<input class="log" type="password" id="lozinka" name="lozinka" placeholder="lozinka" /><br />
 	<button type="submit" id="prijavi"> Prijavi </button>
