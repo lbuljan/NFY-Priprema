@@ -1,22 +1,31 @@
-
+<?php 	include_once '../konfiguracija.php';  ?>
 <!doctype html>
+<html>
 <head>
-	<meta charset="utf-8">
-</head>
+	<?php 	include_once '../head.php';  ?>
+	</head>
+<body>
+	
+	<?php 	
+	include_once '../nav.php'; 
+	 ?>
 
-<form action="registracija.php" method="POST">
-	<label for="email"> E-mail* </label>
-	<input type="text" id="email" name="email" />
-	<label for="accName"> Ime korisnika* </label>
-	<input type="text" id="accName" name="accName" />
-	<label for="lozinka"> Lozinka* </label>
-	<input type="password" id="lozinka" name="lozinka" />
-	<label for="potvrdilozinku"> Potvrdi lozinku* </label>
-	<input type="password" id="potvrdilozinku" name="potvrdilozinku" />
-	<label for="ziro_racun"> Žiro račun </label>
-	<input type="text" id="ziro_racun" name="ziro_racun" />
-	<button id="prijavi"> Prijavi </button>
+
+<h1 class="login">SIGN UP</h1>
+<div class="prijava">
+<form action="<?php echo $put;?>user/registracija.php" method="POST">
+	<input class="log" type="text" id="email" name="email" placeholder="e-mail*" />
+	<input class="log" type="text" id="accName" name="accName" placeholder="ime korisnika*" />
+	<input class="log" type="password" id="lozinka" name="lozinka" placeholder="lozinka*" />
+	<input class="log" type="password" id="potvrdilozinku" name="potvrdilozinku" placeholder="potvrdi lozinku*" />
+	<input class="log" type="text" id="ziro_racun" name="ziro_racun" placeholder="žiro račun" /><br />
+	<button class="btn1 btn-default" id="prijavi" type="submit" style="margin-top:10px;margin-bottom:20px"> Sing up! </button>
 </form>
+</div>
+<div class="registriraj">
+Već ste registrirani? <br/>
+<button class="btn1 btn-default" id="prijavi" type="submit" style="margin-top:15px;margin-bottom:20px;"><a href="<?php echo $put ?>user/formaPrijava.php" style="color:#d6d6d5;text-decoration:none;">Login</a></button>
+</div>
 
 <?php include "../js/skripte.php";?>
 
@@ -39,3 +48,11 @@
 		}		
 	})
 </script>
+
+<?php 	
+include_once '../footer.php'; 
+?>
+
+
+</body>
+</html>
