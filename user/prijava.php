@@ -7,9 +7,9 @@ $check = $con->prepare("select * from operater where email=:email and lozinka=:l
 $check -> execute($_POST);
 $operater = $check -> fetch(PDO::FETCH_OBJ);
 
-$_SESSION['operater'] = $operater->sifra;
 if($operater==NULL):
 	header("location: formaPrijava.php?err=1");
 else:
+	$_SESSION['autoriziran'] = $operater->sifra;
 	header("location: ../index.php");
 endif;
