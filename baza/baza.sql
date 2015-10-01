@@ -41,12 +41,12 @@ iznos varchar(10) not null
 create table kategorija (
 sifra int not null primary key auto_increment,
 naziv varchar(50)
-)
+);
 
 create table galerija (
-projekt int not null,
+projekt int not null primary key,
 naslovna varchar(100) not null,
-yt_video varchar(150),
+video varchar(150),
 slika1 varchar(100),
 slika2 varchar(100),
 slika3 varchar(100),
@@ -66,15 +66,16 @@ operater int not null,
 projekt int not null,
 komentar varchar(500) not null,
 datum datetime not null
-)
+);
 
-alter table projekt set foreign key (pokretac) references operater(sifra);
-alter table uplata set foreign key (operater) references operater(sifra);
-alter table uplata set foreign key (projekt) references projekt(sifra);
-alter table galerija set foreign key (projekt) references projekt(sifra);
-alter table tag set foreign key (projekt) references projekt(sifra);
-alter table komentar set foreign key (operater) references operater(sifra);
-alter table komentar set foreign key (projekt) references projekt(sifra);
+alter table projekt add foreign key (pokretac) references operater(sifra);
+alter table uplata add foreign key (operater) references operater(sifra);
+alter table uplata add foreign key (projekt) references projekt(sifra);
+alter table galerija add foreign key (projekt) references projekt(sifra);
+alter table tag add foreign key (projekt) references projekt(sifra);
+alter table komentar add foreign key (operater) references operater(sifra);
+alter table komentar add foreign key (projekt) references projekt(sifra);
+alter table projekt add foreign key (kategorija) references kategorija(sifra);
 
 insert into operater (email, accName, lozinka, ime, prezime, wallet, ziro_racun) values ('test@test.com', 'Tester', md5('123'), "Originalni", "Tester", "5000", "HR7836457781665409901");
 insert into kategorija (naziv) values ("Proizvod"), ("Djelatnost"), ("Dobrotvorna svrha"), ("Posao / Poslovna ideja");
