@@ -19,7 +19,7 @@
 	<input class="log" type="password" id="lozinka" name="lozinka" placeholder="lozinka*" />
 	<input class="log" type="password" id="potvrdilozinku" name="potvrdilozinku" placeholder="potvrdi lozinku*" />
 	<input class="log" type="text" id="ziro_racun" name="ziro_racun" placeholder="žiro račun" /><br />
-	<button class="btn1 btn-default" id="prijavi" type="submit" style="margin-top:10px;margin-bottom:20px"> Sing up! </button>
+	<button class="btn1 btn-default" id="prijavi" type="submit" style="margin-top:10px;margin-bottom:20px"> Sign up! </button>
 </form>
 </div>
 <div class="registriraj">

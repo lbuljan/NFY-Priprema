@@ -1,5 +1,6 @@
 body {
   font-family: 'Work Sans', sans-serif;
+  font-weight: 200; 
   overflow-x: hidden;
 }
 
@@ -122,7 +123,7 @@ padding-bottom: 10px;
 .uspj {
   max-width: 350px;
   margin-left: 40px;
-  background-color: #ebe6e2;
+  background-color: #e8e8e7;
 }
 
 .uspj p {
@@ -193,4 +194,220 @@ padding-bottom: 10px;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 0px;
+}
+
+.naziv {
+  max-width: 70%;
+  margin-top: 80px;
+  margin-left: 50px;
+
+}
+
+.zarulja {
+  float: right;
+  max-height: 300px;
+  max-width: 30%;
+  margin-right: 100px;
+  margin-top: 110px;
+  }
+
+.profil {
+  margin-left: 60px;
+  border: 1px solid black;
+  max-width: 170px;
+  margin-top: 30px;
+}
+
+.profil1 {
+  position: absolute;
+   margin-left: 60px;
+   margin-top: -21px;
+  
+   width: 160px;
+}
+
+.profil1 span {
+   background-color: rgba(8,9,9,0.2);
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-right: 35px;
+  padding-bottom: 3px;
+}
+
+.ime h1{
+  margin-left: 280px;
+  margin-top: -170px;
+  font-size: 60px;
+   font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+}
+
+.ime hr {
+  margin-left: 285px;
+  margin-top:-10px;
+  width: 400px;
+  color: black;
+  border-color: black;
+}
+
+.podaci {
+  margin-left: 285px;
+  margin-top:-10px;
+     font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+   font-size: 15px;
+}
+
+.moneybag {
+  max-height: 30px;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+.money{
+  margin-top: -20px;
+  margin-left: 35px;
+}
+
+.promjena {
+  margin-left: 570px;
+}
+
+.projekti {
+  margin-top: 200px;
+}
+
+.pk h1{
+  margin-left: 70px;
+  margin-top: -170px;
+  font-size: 40px;
+   font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+}
+
+.pk hr {
+  margin-left: 70px;
+  margin-top:-5px;
+  width: 400px;
+  color: black;
+  border-color: black;
+}
+
+.pk1 h1{
+
+  margin-top: -465px;
+  font-size: 40px;
+   font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+}
+
+.pk1 hr {
+  margin-left: 0px;
+  margin-top:-5px;
+  width: 400px;
+  color: black;
+  border-color: black;
+}
+
+.pkk {
+    max-width: 250px;
+  margin-left: 55px;
+  background-color: #e8e8e7;
+
+}
+
+.pkk1 {
+  max-width: 250px;
+}
+
+.pkk p {
+  margin: 20px;
+  font-size: 17px;
+  padding-bottom: 20px;
+ 
+}
+
+.pkk h1 {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  font-size: 35px;
+  padding-bottom: 2px;
+ 
+     font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+}
+
+.pkk2 {
+    max-width: 250px;
+  margin-left: -110px;
+  background-color: #e8e8e7;
+
+}
+.pkk2 p {
+  margin: 20px;
+  font-size: 17px;
+  padding-bottom: 20px;
+ 
+}
+
+.pkk2 h1 {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  font-size: 35px;
+  padding-bottom: 2px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 200;
+}
+
+.desno {
+  margin-left: 700px;
+}
+
+.pkk3 {
+  max-width: 270px;
+  margin-left:-15px;
+  background-color: #e8e8e7;
+
+}
+.pkk3 p {
+  margin: 20px;
+  font-size: 17px;
+  padding-bottom: 20px;
+ 
+}
+
+.pkk3 h1 {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  font-size: 35px;
+  padding-bottom: 2px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 200;
+}
+
+
+.pkk4 {
+  max-width: 270px;
+  margin-left: 50px;
+  background-color: #e8e8e7;
+
+}
+.pkk4 p {
+  margin: 20px;
+  font-size: 17px;
+  padding-bottom: 20px;
+ 
+}
+
+.pkk4 h1 {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  font-size: 35px;
+  padding-bottom: 2px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 200;
 }
