@@ -12,7 +12,8 @@ lozinka char(100) not null,
 ziro_racun varchar(21),
 ime varchar(55),
 prezime varchar(55),
-wallet varchar(10)
+wallet varchar(10),
+profilna_slika varchar(150)
 );
 
 create table projekt (
@@ -77,6 +78,8 @@ alter table komentar add foreign key (operater) references operater(sifra);
 alter table komentar add foreign key (projekt) references projekt(sifra);
 alter table projekt add foreign key (kategorija) references kategorija(sifra);
 
-insert into operater (email, accName, lozinka, ime, prezime, wallet, ziro_racun) values ('test@test.com', 'Tester', md5('123'), "Originalni", "Tester", "5000", "HR7836457781665409901");
+insert into operater (email, accName, lozinka, ime, prezime, wallet, ziro_racun, profilna_slika) values ('test@test.com', 'Tester', md5('123'), "Originalni", "Tester", "5000", "HR7836457781665409901", "slike/slika.jpg");
 insert into kategorija (naziv) values ("Proizvod"), ("Djelatnost"), ("Dobrotvorna svrha"), ("Posao / Poslovna ideja");
-
+insert into projekt(naziv, kratki_opis, detaljan_opis, ziro_racun, rok, kategorija, pokretac, cilj) values ("Spejs Shuttle", "Izrada spejs shuttlea da moš pobjeć", "Detaljnije opisano zašto ti treba spejs shuttle da pobjegneš", "HR7836457781665409901", "2015-12-31 23:55:00", 2, 1, "5000000");
+insert into galerija(projekt, naslovna) values (1, "slike/maca.png");
+insert into uplata(projekt, operater, iznos) values (1, 1, "350");

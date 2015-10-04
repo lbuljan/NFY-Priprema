@@ -1,4 +1,23 @@
 <?php 	include_once '../konfiguracija.php';  ?>
+<?php 
+$operater = $con->prepare("select * from operater where sifra=:sifra;");
+$operater->bindvalue(":sifra", $_GET["u"]);
+$operater->execute();
+$user = $operater->fetch(PDO::FETCH_OBJ);
+
+$pokrenuto = $con->prepare("select * from projekt inner join galerija on galerija.projekt=projekt.sifra where pokretac=:sifra");
+$pokrenuto->bindvalue(":sifra", $_GET["u"]);
+$pokrenuto->execute();
+$started = $pokrenuto->fetchAll(PDO::FETCH_OBJ);
+
+$podrzano = $con->prepare("select * from projekt inner join uplata on uplata.projekt=projekt.sifra inner join galerija on galerija.projekt=projekt.sifra where uplata.operater=:sifra");
+$podrzano->bindvalue(":sifra", $_GET["u"]);
+$podrzano->execute();
+$supported = $podrzano->fetchAll(PDO::FETCH_OBJ);
+
+
+
+?>
 <!doctype html>
 <html>
 <head>
@@ -17,67 +36,62 @@
 <img src="<?php echo $put;?>slike/žarulja.png" class="zarulja" />
 
 
-<img src="<?php echo $put;?>slike/slika.jpg" class="profil" />
-<p class="profil1"><span>promjeni fotografiju </span></p>
+<img src="<?php echo $put . $user->profilna_slika;?>" class="profil" />
+
+
 <div class="ime">
-<h1> Imenka Imenić</h1>
+<?php if(isset($user->ime, $user->prezime)):?>
+<h1> <?php echo $user->ime . " " . $user->prezime;?> </h1>
+<?php else:?>
+<h1> <?php echo $user->accName;?> </h1>
+<?php endif;?>
 <hr />
 </div>
 
 <div class="podaci">
-Zagreb, Hrvatska <br />
-email: email@email.email <br />
-web: web.com <br />
-<img src="<?php echo $put;?>slike/money_bag.png" class="moneybag" /><p class="money">3,000 kn</p>
-</div>
+email: <?php echo $user->email;?> <br />
 
-<a href="" class="promjena">Promjeni podatke</a>
-<div class="projekti">
+<?php if($_GET["u"]==$_SESSION["autoriziran"]):?>
+	<img src="<?php echo $put;?>slike/money_bag.png" class="moneybag" /><p class="money"><?php echo $user->wallet;?> kn</p>
+<?php endif;?>
+
+</div>
+<?php if($_SESSION["autoriziran"]==$_GET["u"]):?>
+	<a href="detaljProfil.php?u=<?php echo $_GET["u"];?>" class="promjena">Promjeni podatke</a>
+<?php endif;?>
+
 <div class="row">
-<div class="pk">
-<h1> Projekti korisnika</h1>
-<hr />
-</div>
-<div class="col-md-4">
-<div class="pkk">
-<img src="<?php echo $put;?>slike/maca.png" class="pkk1" />
-<h1>Ime projekta</h1>
-<p>Mačak Gili meditira 23 sata na dan. Mačak je krasan i divan. Stvarno ime mu je Gilmour. Ostatak priče o njemu... <a href="" class="">see more</a></p>
-
-</div>
-
-</div>
-<div class="col-md-4">
-<div class="pkk2">
-<img src="<?php echo $put;?>slike/maca.png" class="pkk1" />
-<h1>Ime projekta</h1>
-<p>Mačak Gili meditira 23 sata na dan. Mačak je krasan i divan. Stvarno ime mu je Gilmour. Ostatak priče o njemu... <a href="" class="">see more</a></p>
-
-</div></div>
+	<div class="pk">
+		<h1> Projekti korisnika</h1>
+		<hr />
+	</div>
+	<?php foreach($started as $st):?>
+	<div class="col-md-4">
+		<div class="pkk">
+			<img src="<?php echo $put . $st->naslovna;?>" class="pkk1" />
+			<h1><?php echo $st->naziv;?></h1>
+			<p><?php echo $st->kratki_opis;?></p>
+		</div>
+	</div>
+	<?php endforeach;?>
 </div>
 <div class="row">
-<div class="desno">
-<div class="pk1">
-<h1> Podržani projekti</h1>
-<hr />
+	<div class="desno">
+	<div class="pk1">
+		<h1> Podržani projekti</h1>
+		<hr />
+	</div>
+	<?php foreach($supported as $sup):?>
+	<div class="col-md-4">
+		<div class="pkk3">
+			<img src="<?php echo $put . $sup->naslovna;?>" class="pkk1" />
+			<h1><?php echo $sup->naziv;?></h1>
+			<p><?php echo $sup->kratki_opis;?></p>
+		</div>
+	</div>
+	<?php endforeach;?>
+	</div>
 </div>
-<div class="col-md-4">
-<div class="pkk3">
-<img src="<?php echo $put;?>slike/maca.png" class="pkk1" />
-<h1>Ime projekta</h1>
-<p>Mačak Gili meditira 23 sata na dan. Mačak je krasan i divan. Stvarno ime mu je Gilmour. Ostatak priče o njemu... <a href="" class="">see more</a></p>
-
-</div></div>
-<div class="col-md-4">
-<div class="pkk4">
-<img src="<?php echo $put;?>slike/maca.png" class="pkk1" />
-<h1>Ime projekta</h1>
-<p>Mačak Gili meditira 23 sata na dan. Mačak je krasan i divan. Stvarno ime mu je Gilmour. Ostatak priče o njemu... <a href="" class="">see more</a></p>
-
-</div>
-</div>
-</div>
-</div></div>
 
 
 

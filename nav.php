@@ -28,7 +28,7 @@
         <li class="navbar-text"><a href="<?php echo $put ?>user/formaRegistracija.php">SIGN UP</a></li>    
 		<li class="navbar-text"><a href="<?php echo $put ?>user/formaPrijava.php">LOGIN</a></li> 
 	  <?php else:?>
-		<li class="navbar-text"><a href="<?php echo $put ?>user/profil.php">PROFIL</a></li>    
+		<li class="navbar-text"><a href="<?php echo $put ?>user/profil.php?u=<?php echo $_SESSION["autoriziran"];?>">PROFIL</a></li>    
 		<li class="navbar-text"><a href="<?php echo $put ?>odjava.php">ODJAVA</a></li>
 	  <?php endif;?>
       </ul>
