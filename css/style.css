@@ -411,3 +411,155 @@ padding-bottom: 10px;
   font-family: 'Work Sans', sans-serif;
   font-weight: 200;
 }
+
+.hrprojekt {
+   border-color:black;
+   color:black;
+   max-width:87%;
+   margin-left:70px;
+   margin-top:-10px;
+}
+
+.imeprojekta h1{
+  margin-left: 70px;
+  margin-top:50px;
+  font-size: 55px;
+   font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+}
+
+.imeprojekta hr {
+  margin-left: 75px;
+  margin-top:-5px;
+  width: 500px;
+  color: black;
+  border-color: black;
+}
+
+.imeprojekta div{
+  margin-left: 400px;
+  font-size: 17px;
+   font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+   position: absolute;
+   margin-top: -40px;
+}
+
+.progress {
+  height: 15px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  background-color: #e8e8e7;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+     margin-left: 75px;
+     margin-top:10px; 
+     width: 500px;     
+}
+
+
+.btn-default1 {
+  color: #e01e25;
+  background-color: #e01e25;
+  border-color: #e01e25;
+}
+.btn-default1:focus,
+.btn-default1.focus {
+  color: #d6d6d5;
+  background-color: #e01e25;
+  border-color: #e01e25;
+}
+.btn-default1:hover {
+  color: #d6d6d5;
+  background-color: #e01e25;
+  border-color: #e01e25;
+}
+.btn-default1:active,
+.btn-default1.active,
+.open > .dropdown-toggle.btn-default1 {
+  color: #d6d6d5;
+  background-color: #e01e25;
+  border-color: #e01e25;
+}
+.btn-default1:active:hover,
+.btn-default1.active:hover,
+.open > .dropdown-toggle.btn-default1:hover,
+.btn-default1:active:focus,
+.btn-default1.active:focus,
+.open > .dropdown-toggle.btn-default1:focus,
+.btn-default1:active.focus,
+.btn-default1.active.focus,
+.open > .dropdown-toggle.btn-default1.focus {
+  color: #d6d6d5;
+  background-color: #e01e25;
+  border-color: #e01e25;
+}
+
+.btnholder {
+  text-align: center;
+}
+
+
+.opis {
+  background-color: #e8e8e7;
+  margin-left:75px;
+  margin-right:75px;
+  padding-top:5px;
+  padding-bottom:30px;
+  padding-left:20px;
+  padding-right:20px;
+   font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+   margin-top: 20px;
+   color:black;
+}
+
+.opis h1 {
+ font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+   color:black;
+}
+
+.opis a {
+margin-left:20px;
+   font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+   font-size:15px;
+   color:black;
+}
+
+.komentari h1 {
+   font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+   font-size:30px;
+   margin-left:75px;
+   color:black;
+}
+
+.komentari hr {
+  margin-left: 75px;
+  margin-top:-2px;
+  margin-right:75px;
+  color: black;
+  border-color: black;
+}
+
+.komentari h5 {
+   font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+   font-size:15px;
+   margin-left:85px;
+   color:black;
+}
+
+.komentari p {
+   font-family: 'Work Sans', sans-serif;
+   font-weight: 200;
+   background-color: #e8e8e7;
+  margin-left:75px;
+  margin-right:75px;
+  padding:10px;
+  color:black;
+}
+

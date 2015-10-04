@@ -17,10 +17,11 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-              <li class="navbar-text"><a href="<?php echo $put ?>index.php">POČETNA</a></li>
-         <li class="navbar-text"><a href="">PROJEKTI</a></li>
-<li class="navbar-text"><a href="">POKRENUTI PROJEKTI</a></li>
-<li class="navbar-text"><a href="">FINANCIRAJ PROJEKT</a></li>
+              <li class="navbar-text"><a href="<?php echo $put ?>index.php">
+              <img src="<?php echo $put ?>slike/cflogo.png" alt="cflogo" style="max-width:40px" /></a></li>
+         <li class="navbar-text"><a href="<?php echo $put ?>projekt/projekti.php">PROJEKTI</a></li>
+<li class="navbar-text"><a href="<?php echo $put ?>projekt/pokrenutipro.php">POKRENUTI PROJEKTI</a></li>
+<li class="navbar-text"><a href="<?php echo $put ?>projekt/financirajpro.php">FINANCIRAJ PROJEKT</a></li>
       </ul>
 	
       <ul class="nav navbar-nav navbar-right">
