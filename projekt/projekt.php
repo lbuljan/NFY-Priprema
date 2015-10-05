@@ -15,7 +15,7 @@ $donacija->bindValue(":projekt", $project->sifra);
 $donacija->execute();
 $donors = $donacija->fetch(PDO::FETCH_NUM);
 
-$komentari = $con->prepare("select * from komentar inner join projekt on projekt.sifra=komentar.projekt inner join operater on operater.sifra=komentar.operater where komentar.projekt=:projekt");
+$komentari = $con->prepare("select * from komentar inner join projekt on projekt.sifra=komentar.projekt inner join operater on operater.sifra=komentar.operater where komentar.projekt=:projekt order by datum desc");
 $komentari->bindValue(":projekt", $project->sifra);
 $komentari->execute();
 $komentar = $komentari->fetchAll(PDO::FETCH_OBJ);
@@ -199,7 +199,7 @@ $kategorija = $kategorije->fetch(PDO::FETCH_OBJ);
 		<div class="komentari">
 			<h1>Komentari</h1>
 			<hr />
-			<textarea id="novi_komentar" width="70%" cols="20" rows="5"></textarea>
+			<textarea id="komentar"> </textarea>
 			<button id="dodaj_komentar">Komentiraj</button>
 			<hr/>
 			<?php foreach($komentar as $kom):?>
@@ -267,10 +267,10 @@ include_once '../footer.php';
 </script>
 <!-- DODAVANJE KOMENTARA -->
 <script>
-	var komentar = $("#novi_komentar").val();
-	var projekt = $("#projekt").val();
-	var operater = $("#operater").val();
 	$("#dodaj_komentar").click(function(){
+		var projekt = $("#projekt").val();
+		var operater = $("#operater").val();
+		var komentar = $("#komentar").val();
 		$.ajax({
       			type: 'POST',
       			url: "dodajKomentar.php",
