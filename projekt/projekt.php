@@ -20,6 +20,15 @@ $komentari->bindValue(":projekt", $project->sifra);
 $komentari->execute();
 $komentar = $komentari->fetchAll(PDO::FETCH_OBJ);
 
+$tagovi = $con->prepare("select * from tag inner join projekt on tag.projekt=projekt.sifra where tag.projekt=:projekt");
+$tagovi->bindValue(":projekt", $project->sifra);
+$tagovi->execute();
+$tag = $tagovi->fetchAll(PDO::FETCH_OBJ);
+
+$kategorije = $con->prepare("select naziv from kategorija where sifra=:sifra");
+$kategorije->bindValue(":sifra", $project->kategorija);
+$kategorije->execute();
+$kategorija = $kategorije->fetch(PDO::FETCH_OBJ);
 ?>
 <!doctype html>
 <html>
@@ -37,7 +46,7 @@ $komentar = $komentari->fetchAll(PDO::FETCH_OBJ);
 
 <img src="<?php echo $put;?>slike/naziv.png" class="naziv" />
 <hr class="hrprojekt" />
-
+<!-- XXXXXXXXXXXXXXXXX OSNOVNI PODACI XXXXXXXXXXXXXXXXX-->
 <div class="row">
 	<div class="col-md-6">
 	<div class="imeprojekta">
@@ -102,16 +111,15 @@ $komentar = $komentari->fetchAll(PDO::FETCH_OBJ);
 	<a href="detaljProject.php?p=<?php echo $project->sifra;?>"> Izmjeni projekt </a>
 <?php endif;?>
 <hr style="  margin-left: 75px;width: 500px;color: black;border-color: black;"/>
-<!-- XXXXXXXXXXXXXXXXX TAGOVI XXXXXXXXXXXXXXXXX-->
+<!-- XXXXXXXXXXXXXXXXX TAGOVI I KATEGORIJA XXXXXXXXXXXXXXXXX-->
 <div style="margin-left:75px;margin-top:-10px;">
-	tag1, tag3, tag3
-<img src="<?php echo $put;?>slike/etiketa.png" style="max-width:20px;margin-left:40px;"/> 
-umjetnost
-<img src="<?php echo $put;?>slike/lokacija.png" style="max-width:20px;max-height:20px;margin-left:40px;"/> 
-Zagreb, Hrvatska
-</div>
-
-<a href="" style="margin-left:530px;">uredi</a>
+	<?php 
+	foreach($tag as $tag):
+		echo $tag->naziv;
+	endforeach;
+	?>
+	<img src="<?php echo $put;?>slike/etiketa.png" style="max-width:20px;margin-left:40px;"/> 
+	<?php echo $kategorija->naziv;?>
 
 
 </div>
@@ -185,12 +193,15 @@ Zagreb, Hrvatska
 		<p style="float:right;margin-right:75px;margin-top:20px;"><img src="<?php echo $put;?>slike/share.png" style="max-width:20px;max-height:20px;"/> Share</p>
 	</div>
 </div>
-
+<!-- XXXXXXXXXXXXXXXXX KOMENTARI XXXXXXXXXXXXXXXXX-->
 <div class="row">
 	<div class="col-md-12">
 		<div class="komentari">
 			<h1>Komentari</h1>
 			<hr />
+			<textarea id="novi_komentar" width="70%" cols="20" rows="5"></textarea>
+			<button id="dodaj_komentar">Komentiraj</button>
+			<hr/>
 			<?php foreach($komentar as $kom):?>
 				<h5><?php echo $kom->accName;?></h5>
 
@@ -222,6 +233,7 @@ include_once '../footer.php';
 	$("#traka").css("width", postotak + "%").attr("aria-valuenow", postotak);
 	
 </script>
+<!-- IZVRŠAVANJE UPLATE -->
 <script>
 	$("#financiraj").click(function(){
 		var uplata = $("#uplata").val();
@@ -253,6 +265,29 @@ include_once '../footer.php';
 		return false;
 	})
 </script>
-
+<!-- DODAVANJE KOMENTARA -->
+<script>
+	var komentar = $("#novi_komentar").val();
+	var projekt = $("#projekt").val();
+	var operater = $("#operater").val();
+	$("#dodaj_komentar").click(function(){
+		$.ajax({
+      			type: 'POST',
+      			url: "dodajKomentar.php",
+      			data: "k=" + komentar + "&p=" + projekt + "&u=" + operater,
+      			dataType: 'text'
+    			}).done(function(rezultat) {
+    				
+        			if(rezultat=="OK"){
+        				
+        				alert("Komentar dodan!");
+   						location.reload();
+   					}else{
+   						alert(rezultat);
+   					}
+    			});   
+		return false;
+	})
+</script>
 </body>
 </html>
