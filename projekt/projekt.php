@@ -1,4 +1,26 @@
-<?php 	include_once '../konfiguracija.php';  ?>
+<?php 	include_once '../konfiguracija.php';  
+
+$projekt = $con->prepare("select * from projekt inner join operater on operater.sifra=projekt.pokretac inner join galerija on galerija.projekt=projekt.sifra where projekt.sifra = :sifra;");
+$projekt->bindParam(":sifra", $_GET["p"]);
+$projekt->execute();
+$project = $projekt->fetch(PDO::FETCH_OBJ);
+
+$prikupljeno = $con->prepare("select SUM(iznos) from uplata where projekt=:projekt;");
+$prikupljeno->bindValue(":projekt", $project->sifra);
+$prikupljeno->execute();
+$sum = $prikupljeno->fetch(PDO::FETCH_NUM);
+
+$donacija = $con->prepare("select COUNT(sifra) from uplata where projekt=:projekt");
+$donacija->bindValue(":projekt", $project->sifra);
+$donacija->execute();
+$donors = $donacija->fetch(PDO::FETCH_NUM);
+
+$komentari = $con->prepare("select * from komentar inner join projekt on projekt.sifra=komentar.projekt inner join operater on operater.sifra=komentar.operater where komentar.projekt=:projekt");
+$komentari->bindValue(":projekt", $project->sifra);
+$komentari->execute();
+$komentar = $komentari->fetchAll(PDO::FETCH_OBJ);
+
+?>
 <!doctype html>
 <html>
 <head>
@@ -17,33 +39,70 @@
 <hr class="hrprojekt" />
 
 <div class="row">
-<div class="col-md-6">
-<div class="imeprojekta">
-<h1> Ime projekta</h1><div>by <a href="">user_name</a></div>
+	<div class="col-md-6">
+	<div class="imeprojekta">
+		<h1> <?php echo $project->naziv;?></h1>
+			<div>by
+				<a href="<?php echo $put;?>user/profil.php?u=<?php echo $project->pokretac;?>">
+					<?php if($project->ime && $project->prezime==NULL):?>
+						<?php echo $project->ime . " " . $project->prezime;?>
+					<?php else:?>
+						<?php echo $project->accName;?>
+					<?php endif;?>
+				</a>
+			</div>
+		<hr />
+	</div>
 
-<hr />
-</div>
+	<div style="margin-left:75px;">
+		<strong style="color:red;">
+			Status
+		</strong>
+	<br />
+	
+	<div style="margin-left:80px;margin-top:10px;font-size:18px;">
+		<img src="<?php echo $put;?>slike/time.png" style="max-width:20px;"/>
+		<?php echo $project->rok;?>
 
-<div style="margin-left:75px;">
-<strong style="color:red;">
-Status</strong><br />
-<div style="margin-left:80px;margin-top:10px;font-size:18px;">
-<img src="<?php echo $put;?>slike/time.png" style="max-width:20px;"/> 
-13d:2h:3m:20s
-<img src="<?php echo $put;?>slike/users.png" style="max-width:20px;margin-left:50px;"/> 200
+		<img src="<?php echo $put;?>slike/users.png" style="max-width:20px;margin-left:50px;"/> 
+		<?php echo $donors[0];?>
+	</div>
 </div>
-</div>
+	
+	<input type="hidden" id="prikupljeno" value="<?php echo $sum[0];?>"/>
+	<input type="hidden" id="cilj" value="<?php echo $project->cilj;?>" />
+	<input type="hidden" id="projekt" value="<?php echo $project->sifra;?>" />
+	<input type="hidden" id="operater" value="<?php echo $_SESSION["autoriziran"];?>"/>
+	
 <div class="progress">
-  <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+  <div id="traka" class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
   aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
  
   </div>
 
 </div>
- <div style="margin-top:-20px;"><div style="margin-left:75px;">0kn</div><div style="margin-left:520px;margin-top:-20px;">5 000kn</div></div>
-<div class="btnholder"><button class="btn btn-default1" style="color:white;" type="submit">Financiraj</button></div>
+<div style="margin-top:-20px;">
+	<div style="margin-left:75px;">
+		<?php echo $sum[0];?> kn
+	</div>
+	<div style="margin-left:520px;margin-top:-20px;">
+		<?php echo $project->cilj;?> kn
+	</div>
+</div>
+<!-- XXXXXXXXXXXXXXXXX UPLATA XXXXXXXXXXXXXXXXX-->
+<?php if($_SESSION["autoriziran"]!=$project->pokretac):?>
+<input type="text" id="uplata" name="uplata" />kn
+<div class="btnholder">
+	<button id="financiraj" class="btn btn-default1" style="color:white;">
+		Financiraj
+	</button>
+</div>
+<?php else:?>
+	<a href="delProject.php?p=<?php echo $project->sifra;?>"> Obriši projekt </a>
+	<a href="detaljProject.php?p=<?php echo $project->sifra;?>"> Izmjeni projekt </a>
+<?php endif;?>
 <hr style="  margin-left: 75px;width: 500px;color: black;border-color: black;"/>
-
+<!-- XXXXXXXXXXXXXXXXX TAGOVI XXXXXXXXXXXXXXXXX-->
 <div style="margin-left:75px;margin-top:-10px;">
 	tag1, tag3, tag3
 <img src="<?php echo $put;?>slike/etiketa.png" style="max-width:20px;margin-left:40px;"/> 
@@ -68,16 +127,38 @@ Zagreb, Hrvatska
 	</ol>
 	<div class="carousel-inner">
 		<div class="item active">
-			<img src="<?php echo $put ?>slike/maca.png" alt="" class="img-responsive" />
+			<img src="<?php echo $put . $project->naslovna; ?>" alt="<?php echo $project->naziv;?> - naslovna" class="img-responsive" />
 		</div>
 		
+		<?php if($project->slika1!=NULL):?>
 		<div class="item">
-			<img src="<?php echo $put ?>slike/maca.png" alt="" class="img-responsive" />
+			<img src="<?php echo $put . $project->slika1;?>" alt="Slika 1" class="img-responsive" />
 		</div>
+		<?php endif;?>
 		
+		<?php if($project->slika2!=NULL):?>
 		<div class="item">
-			<img src="<?php echo $put ?>slike/maca.png" alt="" class="img-responsive" />
+			<img src="<?php echo $put . $project->slika2;?>" alt="Slika 2" class="img-responsive" />
 		</div>
+		<?php endif;?>
+		
+		<?php if($project->slika3!=NULL):?>
+		<div class="item">
+			<img src="<?php echo $put . $project->slika3;?>" alt="Slika 3" class="img-responsive" />
+		</div>
+		<?php endif;?>
+		
+		<?php if($project->slika4!=NULL):?>
+		<div class="item">
+			<img src="<?php echo $put . $project->slika4;?>" alt="Slika 4" class="img-responsive" />
+		</div>
+		<?php endif;?>
+		
+		<?php if($project->slika5!=NULL):?>
+		<div class="item">
+			<img src="<?php echo $put . $project->slika5;?>" alt="Slika 5" class="img-responsive" />
+		</div>
+		<?php endif;?>
 		
 		
 		
@@ -96,54 +177,82 @@ Zagreb, Hrvatska
 </div>
 
 <div class="row">
-<div class="col-md-12">
-<div class="opis">
-<h1>Detaljan opis<a href="">uredi</a></h1>
-
-Projekt je vremenski određena aktivnost s ciljem da se proizvede jedinstven proizvod, usluga ili rezultat.
-
-Za razliku od operacija, koje su neprekidne i mogu se ponavljati, projekti su vremenski ograničeni i jedinstveni. Projekti se poduzimaju na svim razinama organizacije i mogu uključivati od jedne osobe do više tisuća osoba u nekoliko različitih timova.
-Osnovna razlika između projekta i operacije je u tome što su operacije neprekidne i mogu se ponavljati, a projekti su vremenski ograničeni i jedinstveni. Svrha im je također različita. Namjera projekta je postići zadane ciljeve i završiti. Svrha operacije je podupiranje i održanje poslovanja, čak i kada se ciljevi promijene.
-</div>
-<p style="float:right;margin-right:75px;margin-top:20px;"><img src="<?php echo $put;?>slike/share.png" style="max-width:20px;max-height:20px;"/> Share</p>
-
-</div>
+	<div class="col-md-12">
+		<div class="opis">
+			<h1>Detaljan opis</h1>
+			<?php echo $project->detaljan_opis;?>
+		</div>
+		<p style="float:right;margin-right:75px;margin-top:20px;"><img src="<?php echo $put;?>slike/share.png" style="max-width:20px;max-height:20px;"/> Share</p>
+	</div>
 </div>
 
 <div class="row">
-<div class="col-md-12">
-<div class="komentari">
-<h1>Komentari</h1>
+	<div class="col-md-12">
+		<div class="komentari">
+			<h1>Komentari</h1>
+			<hr />
+			<?php foreach($komentar as $kom):?>
+				<h5><?php echo $kom->accName;?></h5>
 
-<hr />
-<h5>osoba123</h5>
+				<p><?php echo $kom->komentar;?></p>
+			<?php endforeach;?>
 
-<p>komentar komentar komentarišem</p>
+			<center style="margin-top:50px;"><button class="btn btn-default1" style="color:white;" type="submit">Financiraj</button></center>
 
-
-
-
-<h5>osoba123</h5>
-
-<p>komentar komentar komentarišem</p>
-
-<center style="color:black;"><a href="">see more</a></center>
-<center style="margin-top:50px;"><button class="btn btn-default1" style="color:white;" type="submit">Financiraj</button></center>
-
-</div>
-</div>
+		</div>
+	</div>
 </div>
 
- <script>
-            $("#carousel").carousel();
-        </script>
+<script>
+    $("#carousel").carousel();
+</script>
 
 
 
 <?php 	
 include_once '../footer.php'; 
 ?>
+<?php include "../pomocno/skripte.php";?>
 
+<script>
+	var prikupljeno = $("#prikupljeno").val();
+	var cilj = $("#cilj").val();
+	var postotak = prikupljeno/cilj*100;
+	
+	$("#traka").css("width", postotak + "%").attr("aria-valuenow", postotak);
+	
+</script>
+<script>
+	$("#financiraj").click(function(){
+		var uplata = $("#uplata").val();
+		if(!$.isNumeric(uplata)){
+			alert("Potrebno je unijeti brojčanu vrijednost");
+			return false;
+		}
+		if(uplata<0){
+			alert("Unešeni iznos mora biti pozitivna brojčana vrijednost! Decimalni iznosi pišu se sa točkom!");
+			return false;
+		};
+		var projekt = $("#projekt").val();
+		var operater = $("#operater").val();
+			$.ajax({
+      			type: 'POST',
+      			url: "uplata.php",
+      			data: "i=" + $("#uplata").val() + "&p=" + projekt + "&u=" + operater,
+      			dataType: 'text'
+    			}).done(function(rezultat) {
+    				
+        			if(rezultat=="OK"){
+        				
+        				alert("Transakcija provedena!");
+   						location.reload();
+   					}else{
+   						alert(rezultat);
+   					}
+    			});   
+		return false;
+	})
+</script>
 
 </body>
 </html>
